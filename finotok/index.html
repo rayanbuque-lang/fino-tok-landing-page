@@ -7,8 +7,15 @@
 <meta name="description" content="Esmalteria pioneira em Tupã/SP desde 2019. Manicure, pedicure, design de sobrancelha, estética facial e corporal com atendimento por agendamento e esterilização hospitalar. Agende seu horário online.">
 <meta property="og:title" content="Fino Tok Esmalteria — Sua beleza, seu momento">
 <meta property="og:description" content="Esmalteria pioneira em Tupã/SP. Atendimento por agendamento, ambiente seguro e cuidado completo para você.">
-<meta property="og:image" content="assets/hero-fran.jpg">
+<meta property="og:image" content="https://finotok2.netlify.app/assets/hero-fran.jpg">
+<meta property="og:url" content="https://finotok2.netlify.app/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fino Tok Esmalteria — Sua beleza, seu momento">
+<meta name="twitter:description" content="Esmalteria pioneira em Tupã/SP. Atendimento por agendamento, ambiente seguro e cuidado completo para você.">
+<meta name="twitter:image" content="https://finotok2.netlify.app/assets/hero-fran.jpg">
+<link rel="canonical" href="https://finotok2.netlify.app/">
 <meta name="theme-color" content="#17110c">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/favicon.png">
@@ -356,10 +363,10 @@
   @media(min-width:940px){.loc-grid{grid-template-columns:1fr 1.1fr;}}
   .hours-table{width:100%; border-collapse:collapse; margin-top:22px;}
   .hours-table tr{border-bottom:1px solid var(--glass-border);}
-  .hours-table td{padding:11px 0; font-size:14.5px;}
-  .hours-table td:first-child{color:var(--cream); font-weight:600;}
+  .hours-table td, .hours-table th{padding:11px 0; font-size:14.5px; text-align:left; font-weight:400;}
+  .hours-table th{color:var(--cream); font-weight:600;}
   .hours-table td:last-child{color:var(--cream-dim); text-align:right;}
-  .hours-table tr.today td{color:var(--gold-light);}
+  .hours-table tr.today td, .hours-table tr.today th{color:var(--gold-light);}
   .map-frame{border-radius:20px; overflow:hidden; border:1px solid var(--glass-border); aspect-ratio:4/3.4; filter:grayscale(0.3) sepia(0.15) contrast(1.05);}
   .map-frame iframe{width:100%; height:100%; border:0;}
   .addr-line{display:flex; gap:12px; align-items:flex-start; margin-top:18px;}
@@ -417,6 +424,39 @@
   .section-lead{margin-top:16px; max-width:520px; font-size:16px;}
   .center{text-align:center; margin-left:auto; margin-right:auto;}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "Fino Tok Esmalteria",
+  "image": "https://finotok2.netlify.app/assets/hero-fran.jpg",
+  "url": "https://finotok2.netlify.app/",
+  "telephone": "+5514999075803",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua Carijós, 434, Centro",
+    "addressLocality": "Tupã",
+    "addressRegion": "SP",
+    "postalCode": "17601-010",
+    "addressCountry": "BR"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "17:00" }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/finotoktupa/",
+    "https://www.facebook.com/finotokesmalteria/",
+    "https://www.tiktok.com/@finotokesmalteria"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.6",
+    "reviewCount": "17"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -452,7 +492,7 @@
 </header>
 
 <div class="drawer" id="drawer">
-  <button class="drawer-close" id="drawerClose">×</button>
+  <button class="drawer-close" id="drawerClose" aria-label="Fechar menu">×</button>
   <a href="#sobre">História</a>
   <a href="#experiencia">Experiência</a>
   <a href="#servicos">Serviços</a>
@@ -491,7 +531,7 @@
           <div class="lbl">Anos de<br>Fino Tok</div>
         </div>
         <div class="hero-frame">
-          <img src="assets/hero-fran.jpg" alt="Fran Silva Freitas, fundadora da Fino Tok Esmalteria, ao lado da autoclave de esterilização Cristófoli Vitale Class">
+          <img src="assets/hero-fran.jpg" width="1097" height="1434" fetchpriority="high" alt="Fran Silva Freitas, fundadora da Fino Tok Esmalteria, ao lado da autoclave de esterilização Cristófoli Vitale Class">
           <div class="hero-caption">
             <div class="name">Fran Silva Freitas</div>
             <div class="role">Fundadora · Fino Tok Esmalteria</div>
@@ -529,7 +569,7 @@
   <section id="sobre">
     <div class="wrap about-grid">
       <div class="about-photo reveal">
-        <img src="assets/gallery-polish.jpg" alt="Detalhe de mão com esmalte na cor nude no ateliê Fino Tok">
+        <img src="assets/gallery-polish.jpg" width="1024" height="1047" loading="lazy" alt="Detalhe de mão com esmalte na cor nude no ateliê Fino Tok">
       </div>
       <div class="reveal">
         <div class="eyebrow">A história por trás do nome</div>
@@ -781,7 +821,7 @@
       <div class="posts-row reveal">
         <div class="post-card solo">
           <span class="post-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c-2.7 0-3 0-4.1.06-1.1.05-1.9.24-2.6.5a5.2 5.2 0 0 0-1.9 1.2 5.2 5.2 0 0 0-1.2 1.9c-.27.7-.46 1.5-.5 2.6C1.6 9.5 1.6 9.8 1.6 12.5s0 3 .06 4.1c.05 1.1.24 1.9.5 2.6.28.72.65 1.33 1.2 1.9.56.55 1.17.92 1.9 1.2.7.27 1.5.46 2.6.5 1.1.06 1.4.06 4.1.06s3 0 4.1-.06c1.1-.05 1.9-.24 2.6-.5a5.2 5.2 0 0 0 1.9-1.2 5.2 5.2 0 0 0 1.2-1.9c.27-.7.46-1.5.5-2.6.06-1.1.06-1.4.06-4.1s0-3-.06-4.1c-.05-1.1-.24-1.9-.5-2.6a5.2 5.2 0 0 0-1.2-1.9 5.2 5.2 0 0 0-1.9-1.2c-.7-.27-1.5-.46-2.6-.5C15 2.2 14.7 2.2 12 2.2Zm0 1.8c2.66 0 2.97 0 4.02.06.97.04 1.5.2 1.85.34.46.18.8.4 1.15.75.35.35.57.68.75 1.14.14.36.3.9.34 1.86.06 1.05.06 1.36.06 4.02s0 2.97-.06 4.02c-.04.97-.2 1.5-.34 1.85-.18.46-.4.8-.75 1.15a3.1 3.1 0 0 1-1.15.75c-.36.14-.88.3-1.85.34-1.05.06-1.36.06-4.02.06s-2.97 0-4.02-.06c-.97-.04-1.5-.2-1.85-.34a3.1 3.1 0 0 1-1.15-.75 3.1 3.1 0 0 1-.75-1.15c-.14-.36-.3-.88-.34-1.85-.06-1.05-.06-1.36-.06-4.02s0-2.97.06-4.02c.04-.97.2-1.5.34-1.86.18-.46.4-.79.75-1.14.35-.35.68-.57 1.15-.75.36-.14.88-.3 1.85-.34C9.03 4 9.34 4 12 4Zm0 3.05a5.2 5.2 0 1 0 0 10.4 5.2 5.2 0 0 0 0-10.4Zm0 8.58a3.38 3.38 0 1 1 0-6.76 3.38 3.38 0 0 1 0 6.76Zm5.4-8.78a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"/></svg> @finotoktupa</span>
-          <img src="assets/social-hands.jpg" alt="Post do Instagram Fino Tok: unhas lindas, ambiente seguro e atendimento impecável">
+          <img src="assets/social-hands.jpg" width="1123" height="1401" loading="lazy" alt="Post do Instagram Fino Tok: unhas lindas, ambiente seguro e atendimento impecável">
         </div>
       </div>
 
@@ -820,9 +860,10 @@
         </div>
 
         <table class="hours-table">
-          <tr><td>Segunda a sexta</td><td>8h às 19h</td></tr>
-          <tr><td>Sábado</td><td>8h às 17h</td></tr>
-          <tr><td>Domingo</td><td>Fechado</td></tr>
+          <caption style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">Horário de funcionamento</caption>
+          <tr><th scope="row">Segunda a sexta</th><td>8h às 19h</td></tr>
+          <tr><th scope="row">Sábado</th><td>8h às 17h</td></tr>
+          <tr><th scope="row">Domingo</th><td>Fechado</td></tr>
         </table>
 
         <a class="btn btn-primary" style="margin-top:30px;" target="_blank" rel="noopener" href="https://finotokesmalteria.gendo.app/#/">
@@ -832,7 +873,7 @@
       </div>
 
       <div class="map-frame reveal">
-        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de localização da Fino Tok Esmalteria — Rua Carijós, 434, Centro, Tupã/SP"
           src="https://maps.google.com/maps?q=Rua%20Carij%C3%B3s%2C%20434%20-%20Centro%2C%20Tup%C3%A3%20-%20SP%2C%2017601-010&t=&z=16&ie=UTF8&iwloc=&output=embed">
         </iframe>
       </div>
