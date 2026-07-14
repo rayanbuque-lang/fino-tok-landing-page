@@ -302,6 +302,7 @@
   .safety-grid{display:grid; grid-template-columns:1fr; gap:50px; align-items:center;}
   @media(min-width:940px){.safety-grid{grid-template-columns:1fr 1fr;}}
   .trust-panel{
+    --mx:50%; --my:50%;
     display:flex; flex-direction:column; align-items:center; text-align:center; gap:30px;
     padding:56px 40px; border-radius:24px; background:var(--glass-2); border:1px solid var(--glass-border);
     box-shadow:inset 0 1px 0 rgba(255,255,255,0.1), 0 30px 60px -30px rgba(0,0,0,0.5);
@@ -310,7 +311,8 @@
   .trust-panel::before{
     content:''; position:absolute; width:340px; height:340px; border-radius:50%;
     background:radial-gradient(circle, rgba(201,161,90,0.16), transparent 70%);
-    top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;
+    top:var(--my); left:var(--mx); transform:translate(-50%,-50%); pointer-events:none;
+    transition:top 0.2s ease-out, left 0.2s ease-out;
   }
   .seal-lg{width:170px; height:170px;}
   .seal-lg .seal-core{width:104px; height:104px;}
@@ -327,6 +329,20 @@
   .safety-point .ic svg{width:18px; height:18px; color:var(--gold-light);}
   .safety-point h4{font-size:15.5px; color:var(--cream); font-weight:700; margin-bottom:4px;}
   .safety-point p{font-size:14px;}
+
+  .term{
+    border-bottom:1px dotted var(--gold); cursor:help; position:relative; color:var(--cream);
+  }
+  .term::after{
+    content:attr(data-tip); position:absolute; left:50%; bottom:calc(100% + 10px); translate:-50% 0;
+    width:250px; background:#0f0b07; color:var(--cream); font-size:12.5px; line-height:1.5;
+    padding:10px 12px; border-radius:8px; border:1px solid var(--glass-border);
+    opacity:0; pointer-events:none; transition:opacity 0.2s ease, transform 0.2s ease;
+    transform:translateY(4px); z-index:10;
+    box-shadow:0 12px 28px -10px rgba(0,0,0,0.6);
+  }
+  .term:hover::after, .term:focus-visible::after{opacity:1; transform:translateY(0);}
+  @media (max-width:600px){.term::after{width:200px;}}
 
   /* social proof */
   .stats-row{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:44px;}
@@ -521,7 +537,7 @@
     </nav>
     <div style="display:flex; align-items:center; gap:14px;">
       <a class="btn btn-primary btn-sm navcta" target="_blank" rel="noopener" href="https://finotokesmalteria.gendo.app/#/">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="15" height="15"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
         Agendar horário
       </a>
       <button class="burger" id="burgerBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
@@ -551,7 +567,7 @@
         <p class="lead">Na Fino Tok você agenda o horário, chega, é recebida pelo nome e sai com pé e mão prontos em cerca de uma hora — em um espaço pensado para o seu cuidado, do início ao fim.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" target="_blank" rel="noopener" href="https://finotokesmalteria.gendo.app/#/">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="16" height="16"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
             Agendar horário
           </a>
           <a class="btn btn-outline" href="#servicos">Ver serviços</a>
@@ -657,77 +673,77 @@
       <div class="svc-grid">
         <!-- card template -->
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 21c-3-1-5-4-5-8V7l5-2 5 2v6c0 4-2 7-5 8Z"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 21c-3-1-5-4-5-8V7l5-2 5 2v6c0 4-2 7-5 8Z"/></svg></div>
           <h3>Manicure & Pedicure</h3>
           <p>O clássico Fino Tok: cutículas, lixamento e esmaltação impecáveis, em pé e mão prontos em cerca de uma hora.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18c2-1 3-4 3-7 0-3 2-6 5-6s5 3 5 6c0 3 1 6 3 7"/><path d="M9 20h6"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18c2-1 3-4 3-7 0-3 2-6 5-6s5 3 5 6c0 3 1 6 3 7"/><path d="M9 20h6"/></svg></div>
           <h3>Plástica dos Pés</h3>
           <p>Tratamento especializado para calos, ressecamento e rachaduras, devolvendo o conforto a cada passo.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13c2-6 16-6 18 0"/><path d="M12 13v6"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13c2-6 16-6 18 0"/><path d="M12 13v6"/></svg></div>
           <h3>Blindagem</h3>
           <p>Camada protetora que fortalece a unha natural, prevenindo quebras sem abrir mão da leveza.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></div>
           <h3>Esmaltação em Gel</h3>
           <p>Cor com brilho de longa duração e resistência muito maior que o esmalte tradicional.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15c2-6 6-9 8-9s2 3 0 5-6 2-8 4Z"/><path d="M13 12c3 0 7-1 7-4"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 15c2-6 6-9 8-9s2 3 0 5-6 2-8 4Z"/><path d="M13 12c3 0 7-1 7-4"/></svg></div>
           <h3>Design de Sobrancelha</h3>
           <p>Formato desenhado para o seu rosto, com técnica de pinça, linha ou henna — do jeito que combinar com você.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 21V9c0-3 1.5-5 4-5s4 2 4 5c0 5-4 6-4 12"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 21V9c0-3 1.5-5 4-5s4 2 4 5c0 5-4 6-4 12"/></svg></div>
           <h3>Alongamento de Unha</h3>
           <p>Unhas no comprimento e formato que você quiser, com acabamento natural e durável.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></div>
           <h3>Micropigmentação</h3>
           <p>Técnica de preenchimento fio a fio para sobrancelhas com aspecto natural e duradouro.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 6 6 6 10a6 6 0 1 1-12 0c0-4 3-7 6-10Z"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c3 3 6 6 6 10a6 6 0 1 1-12 0c0-4 3-7 6-10Z"/></svg></div>
           <h3>Limpeza de Pele</h3>
           <p>Higienização profunda com extração e hidratação, deixando a pele renovada e com viço.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20 20 4M14 4h6v6"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20 20 4M14 4h6v6"/></svg></div>
           <h3>Dermaplaning</h3>
           <p>Esfoliação física que remove células mortas e buço fino, deixando a pele lisa e luminosa.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c3-3 6 3 9 0s6-3 9 0"/><path d="M3 17c3-3 6 3 9 0s6-3 9 0"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12c3-3 6 3 9 0s6-3 9 0"/><path d="M3 17c3-3 6 3 9 0s6-3 9 0"/></svg></div>
           <h3>Drenagem Linfática</h3>
           <p>Massagem manual que estimula a circulação, reduz o inchaço e traz sensação de leveza.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="svc-card reveal">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-4-3-8-6.5-8-11a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 4.5-4 8-8 11Z"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21c-4-3-8-6.5-8-11a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 4.5-4 8-8 11Z"/></svg></div>
           <h3>Massagem Relaxante</h3>
           <p>Um momento só seu para desacelerar, aliviar tensões e recarregar as energias.</p>
           <a class="svc-link" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener">Agendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -742,19 +758,19 @@
       <div class="reveal">
         <div class="eyebrow">O nosso diferencial</div>
         <h2 class="section-title">Ambiente seguro não é discurso, é protocolo</h2>
-        <p class="section-lead">Todos os instrumentos utilizados na Fino Tok passam pela autoclave Cristófoli Vitale Class, o mesmo padrão de esterilização usado em ambientes de saúde — porque cuidar da sua beleza começa por cuidar da sua segurança.</p>
+        <p class="section-lead">Todos os instrumentos utilizados na Fino Tok passam pela autoclave <span class="term" tabindex="0" data-tip="Equipamento de esterilização por vapor a alta pressão — o mesmo tipo usado em hospitais e clínicas para eliminar 100% dos microrganismos.">Cristófoli Vitale Class</span>, o mesmo padrão de esterilização usado em ambientes de saúde — porque cuidar da sua beleza começa por cuidar da sua segurança.</p>
 
         <div class="safety-points">
           <div class="safety-point">
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3.5v5c0 4.5-3 7.9-7 9.5-4-1.6-7-5-7-9.5v-5L12 3z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3.5v5c0 4.5-3 7.9-7 9.5-4-1.6-7-5-7-9.5v-5L12 3z"/><path d="m9 12 2 2 4-4"/></svg></div>
             <div><h4>Esterilização por autoclave</h4><p>Instrumentos higienizados a cada atendimento, com registro e controle de ciclo.</p></div>
           </div>
           <div class="safety-point">
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
             <div><h4>Atendimento por agendamento</h4><p>Sem filas, sem imprevistos: seu horário é só seu.</p></div>
           </div>
           <div class="safety-point">
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c-4-3-8-6.5-8-11a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 4.5-4 8-8 11Z"/></svg></div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21c-4-3-8-6.5-8-11a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 4.5-4 8-8 11Z"/></svg></div>
             <div><h4>Equipe especializada</h4><p>Profissionais treinadas em técnica e em cuidado — o padrão que já dura 7 anos.</p></div>
           </div>
         </div>
@@ -770,7 +786,7 @@
               </text>
             </svg>
             <div class="seal-core">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3.5v5c0 4.5-3 7.9-7 9.5-4-1.6-7-5-7-9.5v-5L12 3z"/></svg>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3.5v5c0 4.5-3 7.9-7 9.5-4-1.6-7-5-7-9.5v-5L12 3z"/></svg>
             </div>
           </div>
           <p class="trust-caption">Autoclave <b>Cristófoli Vitale Class</b> — o mesmo padrão hospitalar aplicado a cada instrumento, antes de cada atendimento.</p>
@@ -914,7 +930,7 @@
         </table>
 
         <a class="btn btn-primary" style="margin-top:30px;" target="_blank" rel="noopener" href="https://finotokesmalteria.gendo.app/#/">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="16" height="16"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
           Agendar horário
         </a>
       </div>
@@ -935,7 +951,7 @@
           <h2>Cuidar de você é o nosso maior padrão de beleza.</h2>
           <p>Agende agora e viva a experiência Fino Tok — sem fila, sem pressa, só cuidado.</p>
           <a class="btn btn-primary" target="_blank" rel="noopener" href="https://finotokesmalteria.gendo.app/#/">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="16" height="16"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
             Agendar horário
           </a>
         </div>
@@ -995,7 +1011,7 @@
 </footer>
 
 <a class="float-wa" href="https://finotokesmalteria.gendo.app/#/" target="_blank" rel="noopener" aria-label="Agendar horário">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
 </a>
 
 <script>
@@ -1031,6 +1047,15 @@ if (reduceMotion) {
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   revealEls.forEach(el => io.observe(el));
 }
+
+// spotlight que segue o cursor no painel de confianca
+document.querySelectorAll('.trust-panel').forEach(panel => {
+  panel.addEventListener('pointermove', (e) => {
+    const r = panel.getBoundingClientRect();
+    panel.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    panel.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
 
 // active nav link on scroll
 const navSections = [...document.querySelectorAll('main section[id]')];
