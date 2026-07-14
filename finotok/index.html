@@ -63,6 +63,7 @@
   p{line-height:1.65; color:var(--cream-dim); margin:0;}
   a{color:inherit; text-decoration:none;}
   img{max-width:100%; display:block;}
+  picture{display:block;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
   ::selection{background:var(--gold); color:var(--espresso);}
 
@@ -461,7 +462,8 @@
 <body>
 
 <div class="bg-video-wrap">
-  <video class="bg-video" autoplay muted loop playsinline poster="assets/experience-poster.jpg">
+  <video class="bg-video" autoplay muted loop playsinline poster="assets/experience-poster.webp">
+    <source src="assets/experience.webm" type="video/webm">
     <source src="assets/experience.mp4" type="video/mp4">
   </video>
 </div>
@@ -531,7 +533,10 @@
           <div class="lbl">Anos de<br>Fino Tok</div>
         </div>
         <div class="hero-frame">
-          <img src="assets/hero-fran.jpg" width="1097" height="1434" fetchpriority="high" alt="Fran Silva Freitas, fundadora da Fino Tok Esmalteria, ao lado da autoclave de esterilização Cristófoli Vitale Class">
+          <picture>
+            <source srcset="assets/hero-fran.webp" type="image/webp">
+            <img src="assets/hero-fran.jpg" width="1097" height="1434" fetchpriority="high" alt="Fran Silva Freitas, fundadora da Fino Tok Esmalteria, ao lado da autoclave de esterilização Cristófoli Vitale Class">
+          </picture>
           <div class="hero-caption">
             <div class="name">Fran Silva Freitas</div>
             <div class="role">Fundadora · Fino Tok Esmalteria</div>
@@ -569,7 +574,10 @@
   <section id="sobre">
     <div class="wrap about-grid">
       <div class="about-photo reveal">
-        <img src="assets/gallery-polish.jpg" width="1024" height="1047" loading="lazy" alt="Detalhe de mão com esmalte na cor nude no ateliê Fino Tok">
+        <picture>
+          <source srcset="assets/gallery-polish.webp" type="image/webp">
+          <img src="assets/gallery-polish.jpg" width="1024" height="1047" loading="lazy" alt="Detalhe de mão com esmalte na cor nude no ateliê Fino Tok">
+        </picture>
       </div>
       <div class="reveal">
         <div class="eyebrow">A história por trás do nome</div>
@@ -821,7 +829,10 @@
       <div class="posts-row reveal">
         <div class="post-card solo">
           <span class="post-tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c-2.7 0-3 0-4.1.06-1.1.05-1.9.24-2.6.5a5.2 5.2 0 0 0-1.9 1.2 5.2 5.2 0 0 0-1.2 1.9c-.27.7-.46 1.5-.5 2.6C1.6 9.5 1.6 9.8 1.6 12.5s0 3 .06 4.1c.05 1.1.24 1.9.5 2.6.28.72.65 1.33 1.2 1.9.56.55 1.17.92 1.9 1.2.7.27 1.5.46 2.6.5 1.1.06 1.4.06 4.1.06s3 0 4.1-.06c1.1-.05 1.9-.24 2.6-.5a5.2 5.2 0 0 0 1.9-1.2 5.2 5.2 0 0 0 1.2-1.9c.27-.7.46-1.5.5-2.6.06-1.1.06-1.4.06-4.1s0-3-.06-4.1c-.05-1.1-.24-1.9-.5-2.6a5.2 5.2 0 0 0-1.2-1.9 5.2 5.2 0 0 0-1.9-1.2c-.7-.27-1.5-.46-2.6-.5C15 2.2 14.7 2.2 12 2.2Zm0 1.8c2.66 0 2.97 0 4.02.06.97.04 1.5.2 1.85.34.46.18.8.4 1.15.75.35.35.57.68.75 1.14.14.36.3.9.34 1.86.06 1.05.06 1.36.06 4.02s0 2.97-.06 4.02c-.04.97-.2 1.5-.34 1.85-.18.46-.4.8-.75 1.15a3.1 3.1 0 0 1-1.15.75c-.36.14-.88.3-1.85.34-1.05.06-1.36.06-4.02.06s-2.97 0-4.02-.06c-.97-.04-1.5-.2-1.85-.34a3.1 3.1 0 0 1-1.15-.75 3.1 3.1 0 0 1-.75-1.15c-.14-.36-.3-.88-.34-1.85-.06-1.05-.06-1.36-.06-4.02s0-2.97.06-4.02c.04-.97.2-1.5.34-1.86.18-.46.4-.79.75-1.14.35-.35.68-.57 1.15-.75.36-.14.88-.3 1.85-.34C9.03 4 9.34 4 12 4Zm0 3.05a5.2 5.2 0 1 0 0 10.4 5.2 5.2 0 0 0 0-10.4Zm0 8.58a3.38 3.38 0 1 1 0-6.76 3.38 3.38 0 0 1 0 6.76Zm5.4-8.78a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"/></svg> @finotoktupa</span>
-          <img src="assets/social-hands.jpg" width="1123" height="1401" loading="lazy" alt="Post do Instagram Fino Tok: unhas lindas, ambiente seguro e atendimento impecável">
+          <picture>
+            <source srcset="assets/social-hands.webp" type="image/webp">
+            <img src="assets/social-hands.jpg" width="1123" height="1401" loading="lazy" alt="Post do Instagram Fino Tok: unhas lindas, ambiente seguro e atendimento impecável">
+          </picture>
         </div>
       </div>
 
