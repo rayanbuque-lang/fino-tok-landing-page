@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://finotok2.netlify.app/sitemap.xml
+Sitemap: https://fino-tok-landing-page.rayanbuque.workers.dev/sitemap.xml
