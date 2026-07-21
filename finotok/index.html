@@ -5,9 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fino Tok Esmalteria — Sua beleza, seu momento | Tupã/SP</title>
 <meta name="description" content="Esmalteria pioneira em Tupã/SP desde 2019. Manicure, pedicure, design de sobrancelha, estética facial e corporal com atendimento por agendamento e esterilização hospitalar. Agende seu horário online.">
+<meta name="robots" content="index, follow">
 <meta property="og:title" content="Fino Tok Esmalteria — Sua beleza, seu momento">
 <meta property="og:description" content="Esmalteria pioneira em Tupã/SP. Atendimento por agendamento, ambiente seguro e cuidado completo para você.">
 <meta property="og:image" content="https://fino-tok-landing-page.rayanbuque.workers.dev/assets/hero-fran.jpg">
+<meta property="og:image:width" content="1097">
+<meta property="og:image:height" content="1434">
+<meta property="og:image:alt" content="Fran Silva Freitas, fundadora da Fino Tok Esmalteria">
+<meta property="og:site_name" content="Fino Tok Esmalteria">
 <meta property="og:url" content="https://fino-tok-landing-page.rayanbuque.workers.dev/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
@@ -21,7 +26,7 @@
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --espresso:#17110c;
@@ -70,6 +75,13 @@
   picture{display:block;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
   ::selection{background:var(--gold); color:var(--espresso);}
+
+  .skip-link{
+    position:fixed; top:-100px; left:16px; z-index:1000;
+    background:var(--gold); color:var(--espresso); font-weight:700; font-size:14px;
+    padding:12px 20px; border-radius:10px; transition:top 0.2s ease;
+  }
+  .skip-link:focus{top:16px;}
 
   /* fixed background video */
   .bg-video-wrap{
@@ -248,27 +260,6 @@
   .video-section{padding-top:70px; padding-bottom:70px;}
   .video-grid{display:grid; grid-template-columns:1fr; gap:50px; align-items:center;}
   @media(min-width:940px){.video-grid{grid-template-columns:0.9fr 1.1fr;}}
-  .phone-frame{
-    position:relative; width:min(300px,80vw); margin:0 auto; aspect-ratio:9/16.2;
-    border-radius:34px; border:6px solid #0f0b07; background:#000;
-    box-shadow:0 50px 100px -30px rgba(0,0,0,0.7), 0 0 0 1px var(--glass-border);
-    overflow:hidden;
-  }
-  .phone-frame video{width:100%; height:100%; object-fit:cover;}
-  .phone-notch{position:absolute; top:8px; left:50%; transform:translateX(-50%); width:70px; height:16px; background:#0f0b07; border-radius:10px; z-index:5;}
-  .sound-btn{
-    position:absolute; bottom:16px; right:16px; z-index:6;
-    width:40px; height:40px; border-radius:50%; background:rgba(23,17,12,0.65); backdrop-filter:blur(6px);
-    border:1px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; cursor:pointer;
-  }
-  .sound-btn svg{width:18px; height:18px; color:#fff;}
-  .play-btn{
-    position:absolute; inset:0; margin:auto; width:64px; height:64px; border-radius:50%;
-    background:rgba(23,17,12,0.55); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.3);
-    display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:6; transition:opacity 0.3s;
-  }
-  .play-btn svg{width:22px; height:22px; color:#fff; margin-left:3px;}
-  .play-btn.hidden{opacity:0; pointer-events:none;}
 
   /* services */
   .svc-grid{display:grid; grid-template-columns:1fr; gap:var(--sp-4); margin-top:50px;}
@@ -425,6 +416,8 @@
   .addr-line{display:flex; gap:var(--sp-3); align-items:flex-start; margin-top:18px;}
   .addr-line svg{width:18px; height:18px; color:var(--gold-light); flex-shrink:0; margin-top:2px;}
   .addr-line p{font-size:14.5px; color:var(--cream);}
+  .phone-link{text-decoration:underline; text-decoration-color:transparent; transition:text-decoration-color 0.2s ease;}
+  .phone-link:hover, .phone-link:focus-visible{text-decoration-color:var(--gold);}
 
   /* final cta */
   .final-cta{
@@ -513,19 +506,32 @@
 </head>
 <body>
 
-<div class="bg-video-wrap">
-  <video class="bg-video" autoplay muted loop playsinline poster="assets/experience-poster.webp">
-    <source src="assets/experience.webm" type="video/webm">
-    <source src="assets/experience.mp4" type="video/mp4">
-  </video>
+<a class="skip-link" href="#top">Pular para o conteúdo</a>
+
+<div class="bg-video-wrap" aria-hidden="true">
+  <video class="bg-video" id="bgVideo" muted loop playsinline poster="assets/experience-poster.webp" preload="none"></video>
 </div>
-<div id="bg-layer"></div>
-<div id="grain"></div>
+<div id="bg-layer" aria-hidden="true"></div>
+<div id="grain" aria-hidden="true"></div>
+<script>
+  (function(){
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var lowData = conn && (conn.saveData || /2g/.test(conn.effectiveType || ''));
+    var narrowViewport = window.matchMedia('(max-width: 700px)').matches;
+    if (lowData || narrowViewport) return;
+    var v = document.getElementById('bgVideo');
+    v.preload = 'auto';
+    v.innerHTML = '<source src="assets/experience.webm" type="video/webm"><source src="assets/experience.mp4" type="video/mp4">';
+    v.load();
+    v.autoplay = true;
+    v.play().catch(function(){});
+  })();
+</script>
 
 <header id="siteHeader">
   <div class="wrap navrow">
     <a href="#top" class="logo">
-      <img class="logo-img" src="assets/logo.png" alt="Fino Tok Esmalteria">
+      <img class="logo-img" src="assets/logo.png" width="799" height="638" alt="Fino Tok Esmalteria">
     </a>
     <nav class="links">
       <a href="#sobre">História</a>
@@ -540,12 +546,12 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="15" height="15"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg>
         Agendar horário
       </a>
-      <button class="burger" id="burgerBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      <button class="burger" id="burgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
-<div class="drawer" id="drawer">
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação" hidden>
   <button class="drawer-close" id="drawerClose" aria-label="Fechar menu">×</button>
   <a href="#sobre">História</a>
   <a href="#experiencia">Experiência</a>
@@ -919,7 +925,7 @@
         </div>
         <div class="addr-line">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
-          <p>(14) 99907-5803</p>
+          <p><a href="tel:+5514999075803" class="phone-link">(14) 99907-5803</a></p>
         </div>
 
         <table class="hours-table">
@@ -966,7 +972,7 @@
     <div class="foot-grid">
       <div class="foot-col">
         <div class="logo" style="margin-bottom:16px;">
-          <img class="logo-img" src="assets/logo.png" alt="Fino Tok Esmalteria" style="height:52px;">
+          <img class="logo-img" src="assets/logo.png" width="799" height="638" alt="Fino Tok Esmalteria" style="height:52px;">
         </div>
         <p style="max-width:280px;">Esmalteria & estética pioneira em Tupã/SP, cuidando de você desde 2019 com agendamento, técnica e um ambiente que respeita seu tempo.</p>
         <div class="foot-social" style="margin-top:18px;">
@@ -1027,9 +1033,33 @@ window.addEventListener('scroll', () => {
 const burger = document.getElementById('burgerBtn');
 const drawer = document.getElementById('drawer');
 const drawerClose = document.getElementById('drawerClose');
-burger.addEventListener('click', () => drawer.classList.add('open'));
-drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
-drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+const drawerFocusable = () => drawer.querySelectorAll('a, button');
+
+function openDrawer(){
+  drawer.hidden = false;
+  requestAnimationFrame(() => drawer.classList.add('open'));
+  burger.setAttribute('aria-expanded', 'true');
+  drawerClose.focus();
+  document.addEventListener('keydown', onDrawerKeydown);
+}
+function closeDrawer(){
+  drawer.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.removeEventListener('keydown', onDrawerKeydown);
+  burger.focus();
+  setTimeout(() => { drawer.hidden = true; }, 400);
+}
+function onDrawerKeydown(e){
+  if (e.key === 'Escape') { closeDrawer(); return; }
+  if (e.key !== 'Tab') return;
+  const focusables = [...drawerFocusable()];
+  const first = focusables[0], last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+burger.addEventListener('click', openDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
 
 // reveal on scroll
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
